@@ -48,7 +48,7 @@ const Favorites = ({ favorites, toggleFavorite }) => {
   }
 
   return (
-    <div className="ml-10 flex flex-col gap-12">
+    <div className="ml-10 flex h-screen flex-col gap-12 overflow-y-auto">
       <Typography className="mt-8" style="h1" weight="bold">
         Favourites
       </Typography>

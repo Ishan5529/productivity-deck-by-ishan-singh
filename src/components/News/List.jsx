@@ -27,20 +27,20 @@ const List = ({ articles, searchTerm, favorites, toggleFavorite }) => {
     <div className="flex flex-col items-center p-2 ">
       {articles?.map(article => (
         <div
-          className="mt-10 flex w-full items-start justify-between border-b-2 px-10 py-4 shadow-sm"
+          className="mt-10 flex w-full items-center justify-between border-b-2 px-10 py-4 shadow-sm"
           key={article.url}
         >
           <div className="flex max-w-2xl flex-col gap-6">
             <div className="flex flex-col gap-1">
-              <div className="container flex flex-row justify-between gap-x-2">
-                <Typography style="h2" weight="bold">
+              <div className="flex w-full flex-row items-center justify-between gap-x-2">
+                <Typography className="flex-1" style="h2" weight="bold">
                   <a
                     className="text-gray-800"
                     href={article.url}
                     rel="noreferrer"
                     target="_blank"
                   >
-                    {article.title}
+                    {article.title.padEnd(100, "\u00A0")}
                   </a>
                 </Typography>
                 <Favorite
