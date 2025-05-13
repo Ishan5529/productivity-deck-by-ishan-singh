@@ -1,14 +1,16 @@
-import React from "react";
+import { React } from "react";
 
 import NoData from "components/common/NoData";
+import { Favorite } from "neetoicons";
 import { Typography } from "neetoui";
 import { isEmpty } from "ramda";
 import { useTranslation } from "react-i18next";
 
 import { convertDate, isEmptyOrUndefined, fallbackImage } from "./constant";
 
-const List = ({ articles, searchTerm }) => {
+const List = ({ articles, searchTerm, favorites, toggleFavorite }) => {
   const { t } = useTranslation();
+
   if (isEmptyOrUndefined(articles)) {
     return (
       <NoData
@@ -30,9 +32,29 @@ const List = ({ articles, searchTerm }) => {
         >
           <div className="flex max-w-2xl flex-col gap-6">
             <div className="flex flex-col gap-1">
-              <Typography style="h2" weight="bold">
-                {article.title}
-              </Typography>
+              <div className="container flex flex-row justify-between gap-x-2">
+                <Typography style="h2" weight="bold">
+                  <a
+                    className="text-gray-800"
+                    href={article.url}
+                    rel="noreferrer"
+                    target="_blank"
+                  >
+                    {article.title}
+                  </a>
+                </Typography>
+                <Favorite
+                  className="cursor-pointer text-red-400"
+                  fill={favorites[article.url] ? "currentColor" : "None"}
+                  size="20"
+                  onClick={() =>
+                    toggleFavorite({
+                      url: article.url,
+                      title: article.title,
+                    })
+                  }
+                />
+              </div>
               <Typography className="text-gray-600" style="h4" weight="medium">
                 {article.description.slice(0, 300)}
                 <a

@@ -13,7 +13,7 @@ import { DEFAULT_PAGE_INDEX, DEFAULT_PAGE_SIZE } from "./constant";
 import Header from "./Header";
 import List from "./List";
 
-export const News = () => {
+export const News = ({ favorites, toggleFavorite }) => {
   const {
     page,
     searchTerm = "",
@@ -82,7 +82,16 @@ export const News = () => {
       {isFetching ? (
         <SpinnerWrapper />
       ) : (
-        <List {...{ articles, searchTerm, dateFrom, dateTo }} />
+        <List
+          {...{
+            articles,
+            searchTerm,
+            favorites,
+            toggleFavorite,
+            dateFrom,
+            dateTo,
+          }}
+        />
       )}
       <div className="mt-10 self-end">
         <Pagination

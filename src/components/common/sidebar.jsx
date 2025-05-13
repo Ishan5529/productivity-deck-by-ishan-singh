@@ -1,7 +1,7 @@
 import React from "react";
 
 import classNames from "classnames";
-import { Book, Globe, List, TimeTracking } from "neetoicons";
+import { Book, Globe, List, TimeTracking, Favorite } from "neetoicons";
 import {
   NavLink,
   useLocation,
@@ -42,6 +42,19 @@ const SideBar = () => {
         })}
       >
         <Globe />
+      </NavLink>
+      <NavLink
+        to={routes.productivity.favorite}
+        className={classNames({
+          "text-red-400": pathname === routes.productivity.favorite,
+          "text-gray-400": pathname !== routes.productivity.favorite,
+        })}
+      >
+        <Favorite
+          fill={
+            pathname === routes.productivity.favorite ? "currentColor" : "none"
+          }
+        />
       </NavLink>
     </div>
   );

@@ -4,6 +4,7 @@ export const routes = {
     index: "/kanban",
     pomodoro: "/pomodoro",
     news: "/news",
+    favorite: "/favorite",
   },
   pageNotFound: "*",
 };
