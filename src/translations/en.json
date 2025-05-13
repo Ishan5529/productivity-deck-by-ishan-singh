@@ -3,5 +3,9 @@
   "pageNotFound": {
     "title": "The page you're looking for can't be found",
     "label": "Back to home"
+  },
+  "title": {
+    "emptySearchKey": "Enter any news genre search",
+    "articleNotFound": "No News found"
   }
 }

@@ -44,7 +44,6 @@ const responseInterceptors = () => {
   axios.interceptors.response.use(
     response => {
       const data = transformResponseKeysToCamelCase(response);
-      console.log("Response data", data);
 
       checkForSuccess(data);
 

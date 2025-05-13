@@ -4,14 +4,15 @@ import { Input } from "@bigbinary/neetoui";
 import { useSearchOnFocus } from "hooks/useSearchOnFocus";
 import { Search } from "neetoicons";
 
-const SearchBar = () => {
-  const [searchTerm, setSearchTerm] = useState("");
+const SearchBar = ({ updateQueryParams, searchTerm }) => {
+  const [searchKey, setSearchKey] = useState(searchTerm || "");
 
   const inputRef = useRef(null);
   useSearchOnFocus({ inputRef });
 
   const handleChange = value => {
-    setSearchTerm(value);
+    updateQueryParams({ searchTerm: value });
+    setSearchKey(value);
   };
 
   return (
@@ -22,7 +23,7 @@ const SearchBar = () => {
         ref={inputRef}
         suffix={<Search />}
         type="search"
-        value={searchTerm}
+        value={searchKey}
         onChange={({ target: { value } }) => {
           handleChange(value);
         }}
