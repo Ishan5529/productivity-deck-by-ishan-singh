@@ -24,22 +24,26 @@ export const News = ({ favorites, toggleFavorite }) => {
   } = useQueryParams();
   const history = useHistory();
 
+  const defaultSource = "bbc-news";
+  const isDefaultQuery =
+    isEmpty(searchTerm) && !dateFrom && !dateTo && !source && !category;
+
   const params = {
     searchTerm,
     page: Number(page) || DEFAULT_PAGE_INDEX,
     dateFrom,
     dateTo,
-    source,
+    source: isDefaultQuery ? defaultSource : source,
     category,
   };
 
   const { data: { articles, totalResults } = {}, isFetching } = useNewsFetch({
-    q: searchTerm,
+    q: isDefaultQuery ? undefined : searchTerm,
     page: Number(page) || DEFAULT_PAGE_INDEX,
     pageSize: DEFAULT_PAGE_SIZE,
     from: dateFrom,
     to: dateTo,
-    sources: source,
+    sources: isDefaultQuery ? defaultSource : source,
   });
 
   const handlePageNavigation = page =>
