@@ -11,8 +11,6 @@ const ChangeSourceModal = ({
 }) => {
   const [newsSource, setNewsSource] = useState({});
 
-  console.log("isOpenModal", isOpenModal);
-
   const handleCancel = () => {
     setIsOpenModal(false);
   };

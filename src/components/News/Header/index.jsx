@@ -34,7 +34,6 @@ const Header = ({
   );
 
   const handleTagClose = item => {
-    console.log("item", item);
     if (item.label === "search") {
       updateQueryParams({ searchTerm: "" });
       setSearchKey("");

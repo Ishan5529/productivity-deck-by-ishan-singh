@@ -40,3 +40,11 @@ export const newsOptions = [
   { label: "ESPN", value: "espn" },
   { label: "Financial Post", value: "financial-post" },
 ];
+
+export const fallbackImage = poster => {
+  if (poster === "N/A" || isNil(poster)) {
+    return "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsBGOs2225fFqTfnl5EKlrEUBn5-drby1x3Q&s";
+  }
+
+  return poster;
+};

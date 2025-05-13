@@ -5,7 +5,7 @@ import { Typography } from "neetoui";
 import { isEmpty } from "ramda";
 import { useTranslation } from "react-i18next";
 
-import { convertDate, isEmptyOrUndefined } from "./constant";
+import { convertDate, isEmptyOrUndefined, fallbackImage } from "./constant";
 
 const List = ({ articles, searchTerm }) => {
   const { t } = useTranslation();
@@ -53,7 +53,7 @@ const List = ({ articles, searchTerm }) => {
             <img
               alt={article.title}
               className="h-full w-full rounded-lg object-fill"
-              src={article.urlToImage}
+              src={fallbackImage(article.urlToImage)}
             />
           </div>
         </div>

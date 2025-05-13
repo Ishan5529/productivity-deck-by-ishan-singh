@@ -14,8 +14,8 @@ const Filter = ({
   dateTo,
 }) => {
   const [date, setDate] = useState({
-    dateFrom: dateFrom || "",
-    dateTo: dateTo || "",
+    dateFrom: dateFrom || null,
+    dateTo: dateTo || null,
   });
 
   const [newsCategory, setNewsCategory] = useState([]);
@@ -33,7 +33,7 @@ const Filter = ({
   const ClearFilter = () => {
     setSearchKey("");
     setDate({
-      dateFrom: "",
+      dateFrom: null,
       dateTo: "",
     });
     setNewsCategory([]);

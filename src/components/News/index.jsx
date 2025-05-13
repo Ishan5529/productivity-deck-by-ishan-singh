@@ -86,6 +86,7 @@ export const News = () => {
       )}
       <div className="mt-10 self-end">
         <Pagination
+          className="neetix-pagination"
           count={totalResults || 1}
           navigate={handlePageNavigation}
           pageNo={Number(page) || DEFAULT_PAGE_INDEX}
