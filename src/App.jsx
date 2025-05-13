@@ -4,8 +4,8 @@ import { SideBar } from "components/common";
 import PageNotFound from "components/common/PageNotFound";
 import Favorites from "components/Favorites";
 import { Kanban } from "components/Kanban";
-import { News } from "components/News";
-import { Pomodoro } from "components/Pomodoro";
+import News from "components/News";
+import Pomodoro from "components/Pomodoro";
 import { Switch, Route, Redirect } from "react-router-dom";
 import { routes } from "routes";
 

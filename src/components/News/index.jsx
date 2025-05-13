@@ -13,7 +13,7 @@ import { DEFAULT_PAGE_INDEX, DEFAULT_PAGE_SIZE } from "./constant";
 import Header from "./Header";
 import List from "./List";
 
-export const News = ({ favorites, toggleFavorite }) => {
+const News = ({ favorites, toggleFavorite }) => {
   const {
     page,
     searchTerm = "",
@@ -109,3 +109,5 @@ export const News = ({ favorites, toggleFavorite }) => {
     </div>
   );
 };
+
+export default News;

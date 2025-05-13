@@ -43,7 +43,12 @@ const ChangeSourceModal = ({
         />
       </Modal.Body>
       <Modal.Footer className="flex justify-start">
-        <Button label="Save" style="primary" onClick={handleSave} />
+        <Button
+          className="bg-gray-700"
+          label="Save"
+          style="primary"
+          onClick={handleSave}
+        />
         <Button label="Cancel" style="text" onClick={handleCancel} />
       </Modal.Footer>
     </Modal>

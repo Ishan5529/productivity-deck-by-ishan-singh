@@ -112,7 +112,12 @@ const Filter = ({
         </div>
       </Pane.Body>
       <Pane.Footer className="flex space-x-2">
-        <Button label="Done" style="primary" onClick={handleFilter} />
+        <Button
+          className="bg-gray-700"
+          label="Done"
+          style="primary"
+          onClick={handleFilter}
+        />
         <Button label="Clear filters" style="secondary" onClick={ClearFilter} />
       </Pane.Footer>
     </Pane>
