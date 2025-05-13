@@ -11,10 +11,10 @@ export const buildUrl = (route, params) => {
     }
   });
 
-  const queryParams = pipe(
-    omit(placeHolders),
-    keysToSnakeCase,
-    stringify
+  const queryParams = pipe(omit(placeHolders), keysToSnakeCase, params =>
+    stringify(params, {
+      arrayFormat: "repeat",
+    })
   )(params);
 
   return isEmpty(queryParams) ? route : `${route}?${queryParams}`;

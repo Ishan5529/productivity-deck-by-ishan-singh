@@ -1,12 +1,10 @@
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 
 import { Input } from "@bigbinary/neetoui";
 import { useSearchOnFocus } from "hooks/useSearchOnFocus";
 import { Search } from "neetoicons";
 
-const SearchBar = ({ updateQueryParams, searchTerm }) => {
-  const [searchKey, setSearchKey] = useState(searchTerm || "");
-
+const SearchBar = ({ updateQueryParams, setSearchKey, searchKey }) => {
   const inputRef = useRef(null);
   useSearchOnFocus({ inputRef });
 

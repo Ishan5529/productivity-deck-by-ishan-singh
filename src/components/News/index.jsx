@@ -14,19 +14,32 @@ import Header from "./Header";
 import List from "./List";
 
 export const News = () => {
-  const { page, searchTerm = "" } = useQueryParams();
+  const {
+    page,
+    searchTerm = "",
+    dateFrom = null,
+    dateTo = null,
+    source = null,
+    category,
+  } = useQueryParams();
   const history = useHistory();
 
   const params = {
     searchTerm,
     page: Number(page) || DEFAULT_PAGE_INDEX,
-    pageSize: DEFAULT_PAGE_SIZE,
+    dateFrom,
+    dateTo,
+    source,
+    category,
   };
 
   const { data: { articles, totalResults } = {}, isFetching } = useNewsFetch({
     q: searchTerm,
     page: Number(page) || DEFAULT_PAGE_INDEX,
     pageSize: DEFAULT_PAGE_SIZE,
+    from: dateFrom,
+    to: dateTo,
+    sources: source,
   });
 
   const handlePageNavigation = page =>
@@ -55,8 +68,22 @@ export const News = () => {
 
   return (
     <div className="mx-10 flex h-full flex-col">
-      <Header {...{ updateQueryParams, searchTerm }} />
-      {isFetching ? <SpinnerWrapper /> : <List {...{ articles, searchTerm }} />}
+      <Header
+        {...{
+          updateQueryParams,
+          searchTerm,
+          dateFrom,
+          dateTo,
+          source,
+          category,
+          totalResults,
+        }}
+      />
+      {isFetching ? (
+        <SpinnerWrapper />
+      ) : (
+        <List {...{ articles, searchTerm, dateFrom, dateTo }} />
+      )}
       <div className="mt-10 self-end">
         <Pagination
           count={totalResults || 1}
