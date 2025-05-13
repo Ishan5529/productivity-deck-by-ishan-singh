@@ -5,4 +5,5 @@ export const routes = {
     pomodoro: "/pomodoro",
     news: "/news",
   },
+  pageNotFound: "*",
 };

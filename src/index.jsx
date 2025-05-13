@@ -1,21 +1,26 @@
 import React from "react";
 
 import ReactDOM from "react-dom/client";
+import { QueryClientProvider } from "react-query";
 import { BrowserRouter } from "react-router-dom/cjs/react-router-dom.min";
-// import { BrowserRouter } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
+import queryClient from "utils/queryClient";
 
+import initializeAxios from "./api/axios";
 import App from "./App";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 
+initializeAxios();
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <ToastContainer />
-      <App />
-    </BrowserRouter>
+    <QueryClientProvider client={queryClient}>
+      <BrowserRouter>
+        <ToastContainer />
+        <App />
+      </BrowserRouter>
+    </QueryClientProvider>
   </React.StrictMode>
 );
 
