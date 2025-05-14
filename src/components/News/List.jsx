@@ -3,21 +3,23 @@ import { React } from "react";
 import NoData from "components/common/NoData";
 import { Favorite } from "neetoicons";
 import { Typography } from "neetoui";
-import { isEmpty } from "ramda";
-import { useTranslation } from "react-i18next";
+// import { isEmpty } from "ramda";
+// import { useTranslation } from "react-i18next";
 
 import { convertDate, isEmptyOrUndefined, fallbackImage } from "./constant";
 
-const List = ({ articles, searchTerm, favorites, toggleFavorite }) => {
-  const { t } = useTranslation();
+// const List = ({ articles, searchTerm, favorites, toggleFavorite }) => {
+const List = ({ articles, favorites, toggleFavorite }) => {
+  // const { t } = useTranslation();
 
   if (isEmptyOrUndefined(articles)) {
     return (
       <NoData
         description={
-          !isEmpty(searchTerm)
-            ? t("title.articleNotFound")
-            : t("title.emptySearchKey")
+          // !isEmpty(searchTerm)
+          //   ? t("title.articleNotFound")
+          //   : t("title.emptySearchKey")
+          "Error Fetching Articles"
         }
       />
     );

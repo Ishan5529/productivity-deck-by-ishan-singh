@@ -42,9 +42,21 @@ const Favorites = ({ favorites, toggleFavorite }) => {
 
   if (favoriteEntries.length === 0) {
     return (
-      <Typography className="text-gray-500" style="h4">
-        No favorites added yet.
-      </Typography>
+      <>
+        <Helmet>
+          <title>Favourites</title>
+        </Helmet>
+        <div className="ml-10 flex h-screen flex-col gap-12 overflow-y-auto">
+          <Typography className="mt-8" style="h1" weight="bold">
+            Favourites
+          </Typography>
+          <div className="flex h-3/5 w-full items-center justify-center">
+            <Typography className="text-gray-500" style="h3">
+              No favorites added yet.
+            </Typography>
+          </div>
+        </div>
+      </>
     );
   }
 
