@@ -2,6 +2,7 @@
 import React, { useState, useEffect, useRef } from "react";
 
 import { Button, Typography } from "neetoui";
+import { Helmet } from "react-helmet";
 
 const Pomodoro = () => {
   const [time, setTime] = useState(1500);
@@ -68,86 +69,91 @@ const Pomodoro = () => {
   };
 
   return (
-    <div className="ml-10 flex flex-col gap-y-20">
-      <header>
-        <Typography className="mt-8" style="h1" weight="bold">
-          Pomodoro Mode
-        </Typography>
-      </header>
-      <div className="flex h-full flex-col items-center justify-center">
-        <div
-          className="rounded-lg border-2 border-gray-400 p-6 shadow-md"
-          style={{ width: "500px" }}
-        >
-          <div className="mb-6 flex justify-between">
-            <div
-              className={`rounded-lg ${
-                mode === "Pomodoro" ? "border border-gray-800" : ""
-              }`}
-            >
-              <Button
-                label="Pomodoro"
-                size="large"
-                style="tertiary"
-                onClick={() => handleModeChange("Pomodoro")}
-              />
-            </div>
-            <div
-              className={`rounded-lg ${
-                mode === "Short Break" ? "border border-gray-800" : ""
-              }`}
-            >
-              <Button
-                label="Short Break"
-                size="large"
-                style="tertiary"
-                onClick={() => handleModeChange("Short Break")}
-              />
-            </div>
-            <div
-              className={`rounded-lg ${
-                mode === "Long Break" ? "border border-gray-800" : ""
-              }`}
-            >
-              <Button
-                label="Long Break"
-                size="large"
-                style="tertiary"
-                onClick={() => handleModeChange("Long Break")}
-              />
-            </div>
-          </div>
-          <div className="mb-6 text-center">
-            <h2 className="text-8xl font-bold">{formatTime(time)}</h2>
-          </div>
-          <div className="flex justify-center gap-4">
-            <div className="rounded-lg border border-gray-800">
-              <button
-                className="w-40 rounded-lg bg-white py-1 text-3xl font-bold text-gray-800"
-                onClick={handleStartPause}
+    <>
+      <Helmet>
+        <title>Pomodoro Mode</title>
+      </Helmet>
+      <div className="ml-10 flex flex-col gap-y-20">
+        <header>
+          <Typography className="mt-8" style="h1" weight="bold">
+            Pomodoro Mode
+          </Typography>
+        </header>
+        <div className="flex h-full flex-col items-center justify-center">
+          <div
+            className="rounded-lg border-2 border-gray-400 p-6 shadow-md"
+            style={{ width: "500px" }}
+          >
+            <div className="mb-6 flex justify-between">
+              <div
+                className={`rounded-lg ${
+                  mode === "Pomodoro" ? "border border-gray-800" : ""
+                }`}
               >
-                {isRunning ? "Pause" : hasStarted ? "Resume" : "Start"}
-              </button>
+                <Button
+                  label="Pomodoro"
+                  size="large"
+                  style="tertiary"
+                  onClick={() => handleModeChange("Pomodoro")}
+                />
+              </div>
+              <div
+                className={`rounded-lg ${
+                  mode === "Short Break" ? "border border-gray-800" : ""
+                }`}
+              >
+                <Button
+                  label="Short Break"
+                  size="large"
+                  style="tertiary"
+                  onClick={() => handleModeChange("Short Break")}
+                />
+              </div>
+              <div
+                className={`rounded-lg ${
+                  mode === "Long Break" ? "border border-gray-800" : ""
+                }`}
+              >
+                <Button
+                  label="Long Break"
+                  size="large"
+                  style="tertiary"
+                  onClick={() => handleModeChange("Long Break")}
+                />
+              </div>
             </div>
-            {time !==
-              (mode === "Pomodoro"
-                ? 1500
-                : mode === "Short Break"
-                ? 300
-                : 900) && (
+            <div className="mb-6 text-center">
+              <h2 className="text-8xl font-bold">{formatTime(time)}</h2>
+            </div>
+            <div className="flex justify-center gap-4">
               <div className="rounded-lg border border-gray-800">
                 <button
                   className="w-40 rounded-lg bg-white py-1 text-3xl font-bold text-gray-800"
-                  onClick={handleReset}
+                  onClick={handleStartPause}
                 >
-                  Reset
+                  {isRunning ? "Pause" : hasStarted ? "Resume" : "Start"}
                 </button>
               </div>
-            )}
+              {time !==
+                (mode === "Pomodoro"
+                  ? 1500
+                  : mode === "Short Break"
+                  ? 300
+                  : 900) && (
+                <div className="rounded-lg border border-gray-800">
+                  <button
+                    className="w-40 rounded-lg bg-white py-1 text-3xl font-bold text-gray-800"
+                    onClick={handleReset}
+                  >
+                    Reset
+                  </button>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

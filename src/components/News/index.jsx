@@ -5,6 +5,7 @@ import useQueryParams from "hooks/useQueryParams";
 import { filterNonNull } from "neetocist";
 import { Pagination } from "neetoui";
 import { isEmpty } from "ramda";
+import { Helmet } from "react-helmet";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { routes } from "routes";
 import { buildUrl } from "utils/url";
@@ -71,42 +72,47 @@ const News = ({ favorites, toggleFavorite }) => {
   });
 
   return (
-    <div className="mx-10 flex h-full flex-col">
-      <Header
-        {...{
-          updateQueryParams,
-          searchTerm,
-          dateFrom,
-          dateTo,
-          source,
-          category,
-          totalResults,
-        }}
-      />
-      {isFetching ? (
-        <SpinnerWrapper />
-      ) : (
-        <List
+    <>
+      <Helmet>
+        <title>News Mode</title>
+      </Helmet>
+      <div className="mx-10 flex h-full flex-col">
+        <Header
           {...{
-            articles,
+            updateQueryParams,
             searchTerm,
-            favorites,
-            toggleFavorite,
             dateFrom,
             dateTo,
+            source,
+            category,
+            totalResults,
           }}
         />
-      )}
-      <div className="mt-10 self-end">
-        <Pagination
-          className="neetix-pagination"
-          count={totalResults || 1}
-          navigate={handlePageNavigation}
-          pageNo={Number(page) || DEFAULT_PAGE_INDEX}
-          pageSize={DEFAULT_PAGE_SIZE}
-        />
+        {isFetching ? (
+          <SpinnerWrapper />
+        ) : (
+          <List
+            {...{
+              articles,
+              searchTerm,
+              favorites,
+              toggleFavorite,
+              dateFrom,
+              dateTo,
+            }}
+          />
+        )}
+        <div className="mt-10 self-end">
+          <Pagination
+            className="neetix-pagination"
+            count={totalResults || 1}
+            navigate={handlePageNavigation}
+            pageNo={Number(page) || DEFAULT_PAGE_INDEX}
+            pageSize={DEFAULT_PAGE_SIZE}
+          />
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
