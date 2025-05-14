@@ -52,7 +52,7 @@ const Favorites = ({ favorites, toggleFavorite }) => {
       <Typography className="mt-8" style="h1" weight="bold">
         Favourites
       </Typography>
-      <div className="flex flex-col gap-16">
+      <div className="flex flex-col gap-16 overflow-y-auto">
         {favoriteEntries.map(([url, title]) => (
           <div className="mr-16 flex flex-col gap-8 border-b-2 pb-2" key={url}>
             <div className="flex flex-row items-center justify-between">
@@ -83,6 +83,7 @@ const Favorites = ({ favorites, toggleFavorite }) => {
           </div>
         ))}
       </div>
+      <div className="h-8" />
       {isModalOpen && (
         <Modal
           isOpen={isModalOpen}
@@ -93,7 +94,6 @@ const Favorites = ({ favorites, toggleFavorite }) => {
             <Typography className="m-4" style="h2" weight="bold">
               Remove from favourites?
             </Typography>
-            {/* <Typography className="mt-4">Remove from favourites?</Typography> */}
             <div className="mt-6 flex justify-end gap-4">
               <Button
                 label="Cancel"

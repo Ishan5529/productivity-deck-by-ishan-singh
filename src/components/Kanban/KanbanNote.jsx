@@ -3,25 +3,36 @@ import { useState } from "react";
 import { Delete } from "neetoicons";
 import { Input } from "neetoui";
 
-const KanbanNote = ({ holdNote }) => {
+const KanbanNote = ({ value, onChange, onDelete, strike }) => {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
     <div
       className="flex cursor-pointer flex-row items-center justify-center gap-x-4 rounded-lg border border-gray-800 bg-white p-4 shadow-md transition-shadow duration-300 hover:shadow-lg"
-      onMouseDown={holdNote}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
       <Input
         nakedInput
-        className="text-2xl font-bold text-gray-800"
         placeholder="Enter task"
         size="medium"
         style={{ fontSize: "1.3rem" }}
-        type=""
+        value={value}
+        className={`text-2xl font-bold text-gray-800 ${
+          strike ? "line-through" : ""
+        }`}
+        onChange={e => onChange(e.target.value)}
       />
-      {isHovered && <Delete className="text-gray-400" />}
+      {isHovered && (
+        <div
+          onClick={() => {
+            console.log("Delete Clicked");
+            onDelete();
+          }}
+        >
+          <Delete className="cursor-pointer text-gray-400" />
+        </div>
+      )}
     </div>
   );
 };

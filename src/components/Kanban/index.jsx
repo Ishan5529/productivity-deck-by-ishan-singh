@@ -15,7 +15,7 @@ const Kanban = () => {
       <div className="container flex h-3/4 w-screen flex-row justify-between gap-x-10 bg-white">
         <KanbanBoard boardName="To-do" />
         <KanbanBoard boardName="In progress" />
-        <KanbanBoard boardName="Done" />
+        <KanbanBoard strike boardName="Done" />
       </div>
     </div>
   );
