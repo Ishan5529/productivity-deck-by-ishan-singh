@@ -1,4 +1,4 @@
-import SpinnerWrapper from "components/common/SpinnerWrapper";
+import { SpinnerWrapper } from "components/common";
 import { useNewsFetch } from "hooks/reactQuery/useNewsApi";
 import useFuncDebounce from "hooks/useFuncDebounce";
 import useQueryParams from "hooks/useQueryParams";

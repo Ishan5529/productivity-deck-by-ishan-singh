@@ -1,7 +1,6 @@
 import { React } from "react";
 
-import { SideBar } from "components/common";
-import PageNotFound from "components/common/PageNotFound";
+import { SideBar, PageNotFound } from "components/common";
 import Favorites from "components/Favorites";
 import Kanban from "components/Kanban";
 import News from "components/News";

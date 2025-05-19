@@ -63,6 +63,8 @@
     "start": "Start",
     "reset": "Reset",
     "pause": "Pause",
-    "resume": "Resume"
+    "resume": "Resume",
+    "sessionComplete": "Session Complete",
+    "sessionCompleteMessage": "Your {{mode}} session has ended."
   }
 }

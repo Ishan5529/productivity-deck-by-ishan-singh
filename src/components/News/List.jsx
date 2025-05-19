@@ -1,6 +1,6 @@
 import { React } from "react";
 
-import NoData from "components/common/NoData";
+import { NoData } from "components/common";
 import { Favorite } from "neetoicons";
 import { Typography } from "neetoui";
 import { useTranslation } from "react-i18next";
