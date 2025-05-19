@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 
-import KanbanAdd from "./KanbanAdd";
-import KanbanBoardHeader from "./KanbanBoardHeader";
-import KanbanNote from "./KanbanNote";
+import KanbanAdd from "./Add";
+import KanbanBoardHeader from "./header";
+import KanbanNote from "./note";
 
 const KanbanBoard = ({ boardName, strike }) => {
   const [notes, setNotes] = useState(() => {

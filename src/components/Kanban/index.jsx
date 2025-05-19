@@ -2,7 +2,7 @@ import { Typography } from "neetoui";
 import { Helmet } from "react-helmet";
 import { useTranslation } from "react-i18next";
 
-import KanbanBoard from "./KanbanBoard";
+import KanbanBoard from "./Board";
 
 const Kanban = () => {
   const { t } = useTranslation();
