@@ -17,10 +17,10 @@ const SideBar = () => {
         <Book />
       </div>
       <NavLink
-        to={routes.productivity.index}
+        to={routes.productivity.kanban}
         className={classNames({
-          "text-blue-400": pathname === routes.productivity.index,
-          "text-gray-400": pathname !== routes.productivity.index,
+          "text-blue-400": pathname === routes.productivity.kanban,
+          "text-gray-400": pathname !== routes.productivity.kanban,
         })}
       >
         <List />

@@ -14,7 +14,7 @@ const App = () => (
     <SideBar />
     <div className="flex-1 overflow-hidden p-4">
       <Switch>
-        <Route exact component={Kanban} path={routes.productivity.index} />
+        <Route exact component={Kanban} path={routes.productivity.kanban} />
         <Route exact component={Pomodoro} path={routes.productivity.pomodoro} />
         <Route exact component={News} path={routes.productivity.news} />
         <Route
@@ -22,7 +22,7 @@ const App = () => (
           component={Favorites}
           path={routes.productivity.favorite}
         />
-        <Redirect exact from={routes.root} to={routes.productivity.index} />
+        <Redirect exact from={routes.root} to={routes.productivity.kanban} />
         <Route exact component={PageNotFound} path={routes.pageNotFound} />
       </Switch>
     </div>
