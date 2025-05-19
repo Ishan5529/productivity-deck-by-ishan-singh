@@ -73,7 +73,7 @@ const Filter = ({
             <Input
               required
               className="w-96"
-              placeholder={t("news.filter.k/pPlaceholder")}
+              placeholder={t("news.filter.k/phrasePlaceholder")}
               value={searchKey}
               onChange={({ target: { value } }) => setSearchKey(value)}
             />

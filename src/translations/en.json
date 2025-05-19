@@ -22,7 +22,7 @@
   "favourites": {
     "tabTitle": "Favourites",
     "title": "Favourites",
-    "empty": "No favorites added yet.",
+    "empty": "No favorites added yet",
     "remove": "Remove article?",
     "removeMessage": "The article will be removed from your favourites. This can't be undone.",
     "removeTooltip": "Remove from favourites"
@@ -34,14 +34,16 @@
     "inProgress": "In progress",
     "done": "Done",
     "newTask": "Add new task +",
+    "newNotePlaceholder": "Enter task",
     "deleteTitle": "Delete note?",
-    "deleteMessage": "The note will be permanently deleted. This can't be undone."
+    "deleteMessage": "The note will be permanently deleted. This can't be undone.",
+    "drop": "Drop here"
   },
   "news": {
     "tabTitle": "News Mode",
     "title": "News Mode",
-    "empty": "No news articles available.",
-    "error": "Error fetching news articles.",
+    "empty": "No news articles available",
+    "error": "Error fetching news articles",
     "refresh": "Refresh",
     "results": "results for :",
     "clear": "Clear All",
@@ -51,19 +53,20 @@
     "filter": {
       "title": "Filters",
       "key/phrase": "Keyword or phrase",
-      "k/pPlaceholder": "Enter keyword or phrase",
+      "k/phrasePlaceholder": "Enter keyword or phrase",
       "category": "Category",
       "categoryPlaceholder": "Select category",
       "publicationDateRange": "Date of Publication",
       "dateFrom": "Date of publication from",
       "dateTo": "Date of publication to",
-      "invalidDateMessage": "Invalid date. Please select a date after 1970-01-01.",
+      "invalidDateMessage": "Invalid date. Please select a date after 1970-01-01",
       "clear": "Clear filters"
     },
     "favorites": {
       "removeTooltip": "Remove from favourites",
       "addTooltip": "Add to favourites"
-    }
+    },
+    "knowMore": "...Know more"
   },
   "pomodoro": {
     "tabTitle": "Pomodoro Mode",
@@ -73,6 +76,6 @@
     "pause": "Pause",
     "resume": "Resume",
     "sessionComplete": "Session Complete",
-    "sessionCompleteMessage": "Your {{mode}} session has ended."
+    "sessionCompleteMessage": "Your {{mode}} session has ended"
   }
 }

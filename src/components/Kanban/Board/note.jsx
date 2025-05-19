@@ -4,7 +4,15 @@ import { Delete } from "neetoicons";
 import { Input, Modal, Button } from "neetoui";
 import { useTranslation } from "react-i18next";
 
-const KanbanNote = ({ value, onChange, onDelete, strike }) => {
+const KanbanNote = ({
+  boardName,
+  index,
+  value,
+  onChange,
+  onDelete,
+  strike,
+  setActiveNote,
+}) => {
   const { t } = useTranslation();
 
   const [isHovered, setIsHovered] = useState(false);
@@ -18,13 +26,24 @@ const KanbanNote = ({ value, onChange, onDelete, strike }) => {
   return (
     <>
       <div
-        className="flex cursor-pointer flex-row items-center justify-center gap-x-4 rounded-lg border border-gray-800 bg-white p-4 shadow-md transition-shadow duration-300 hover:shadow-lg"
+        draggable
+        className="drag:border-4 drag:border-blue-500 flex cursor-pointer flex-row items-center justify-center gap-x-4 rounded-lg border border-gray-800 bg-white p-4 shadow-md transition-shadow duration-300 hover:shadow-lg"
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
+        onDragEnd={({ target }) => {
+          target.style.cursor = "grab";
+          target.classList.remove("border-blue-500", "opacity-90");
+          setActiveNote(null);
+        }}
+        onDragStart={({ target }) => {
+          target.style.cursor = "grabbing";
+          target.classList.add("border-blue-500", "opacity-90");
+          setActiveNote([boardName, index]);
+        }}
       >
         <Input
           nakedInput
-          placeholder="Enter task"
+          placeholder={t("kanban.newNotePlaceholder")}
           size="medium"
           style={{ fontSize: "1.3rem" }}
           value={value}

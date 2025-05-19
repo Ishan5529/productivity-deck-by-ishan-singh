@@ -1,47 +1,55 @@
-import { useState, useEffect } from "react";
+import React from "react";
 
 import KanbanAdd from "./Add";
+import DropArea from "./dropArea";
 import KanbanBoardHeader from "./header";
 import KanbanNote from "./note";
 
-const KanbanBoard = ({ boardName, strike }) => {
-  const [notes, setNotes] = useState(() => {
-    const savedNotes = localStorage.getItem(`kanban-notes-${boardName}`);
+import useKanbanStore from "../../../stores/kanbanStore";
 
-    return savedNotes ? JSON.parse(savedNotes) : [];
-  });
+const KanbanBoard = ({ boardName, strike, setActiveNote, onDrop }) => {
+  const { notes, setNotes } = useKanbanStore();
 
-  useEffect(() => {
-    localStorage.setItem(`kanban-notes-${boardName}`, JSON.stringify(notes));
-  }, [notes]);
+  const boardNotes = notes[boardName] || [];
 
   const addNote = () => {
-    setNotes([...notes, ""]);
+    setNotes(boardName, [...boardNotes, ""]);
   };
 
   const updateNote = (index, value) => {
-    setNotes(prevNotes =>
-      prevNotes.map((note, i) => (i === index ? value : note))
+    setNotes(
+      boardName,
+      boardNotes.map((note, i) => (i === index ? value : note))
     );
   };
 
   const removeNote = index => {
-    setNotes(prevNotes => prevNotes.filter((_, i) => i !== index));
+    setNotes(
+      boardName,
+      boardNotes.filter((_, i) => i !== index)
+    );
   };
 
   return (
     <div className="container flex h-full w-full flex-col justify-between gap-y-10 rounded-lg border-2 border-gray-400 bg-white px-8 py-6 shadow-md">
-      <div className="flex flex-col justify-center gap-y-10 overflow-y-auto">
+      <div className="flex h-full flex-col justify-center gap-y-10 overflow-y-auto">
         <KanbanBoardHeader boardName={boardName} />
-        <div className="flex flex-col gap-y-4 overflow-y-auto">
-          {notes.map((note, index) => (
-            <KanbanNote
-              key={index}
-              strike={strike}
-              value={note}
-              onChange={value => updateNote(index, value)}
-              onDelete={() => removeNote(index)}
-            />
+        <div className="flex h-full flex-col gap-y-2 overflow-y-auto">
+          <DropArea onDrop={() => onDrop(boardName, 0)} />
+          {boardNotes.map((note, index) => (
+            <>
+              <KanbanNote
+                boardName={boardName}
+                index={index}
+                key={index}
+                setActiveNote={setActiveNote}
+                strike={strike}
+                value={note}
+                onChange={value => updateNote(index, value)}
+                onDelete={() => removeNote(index)}
+              />
+              <DropArea onDrop={() => onDrop(boardName, index + 1)} />
+            </>
           ))}
         </div>
       </div>

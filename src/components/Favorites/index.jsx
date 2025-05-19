@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 import { Favorite } from "neetoicons";
 import { Typography, Input, Modal, Button, Tooltip } from "neetoui";
+import { isEmpty } from "ramda";
 import { Helmet } from "react-helmet";
 import { useTranslation } from "react-i18next";
 import useFavoritesStore from "stores/favoritesStore";
@@ -9,6 +10,7 @@ import useNotesStore from "stores/notesStore";
 
 const Favorites = () => {
   const { t } = useTranslation();
+
   const { favorites, toggleFavorite } = useFavoritesStore();
   const { notes, updateNote } = useNotesStore();
 
@@ -30,7 +32,7 @@ const Favorites = () => {
 
   const favoriteEntries = Object.entries(favorites);
 
-  if (favoriteEntries.length === 0) {
+  if (isEmpty(favoriteEntries)) {
     return (
       <>
         <Helmet>

@@ -65,7 +65,7 @@ const List = ({ articles, favorites, toggleFavorite }) => {
                   rel="noreferrer"
                   target="_blank"
                 >
-                  ...Know more
+                  {t("news.knowMore")}
                 </a>
               </Typography>
             </div>
