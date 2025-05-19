@@ -1,9 +1,11 @@
-/* eslint-disable no-nested-ternary */
 import { useState, useEffect } from "react";
 
 import { Button, Typography, Modal } from "neetoui";
 import { Helmet } from "react-helmet";
 import { useTranslation } from "react-i18next";
+import { formatTime } from "utils/formatTime";
+
+import { resetTime } from "./constants";
 
 const Pomodoro = () => {
   const { t } = useTranslation();
@@ -12,22 +14,6 @@ const Pomodoro = () => {
   const [hasStarted, setHasStarted] = useState(false);
   const [mode, setMode] = useState("Pomodoro");
   const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const resetTime = {
-    Pomodoro: 1500,
-    "Short Break": 300,
-    "Long Break": 900,
-  };
-
-  const formatTime = seconds => {
-    const minutes = Math.floor(seconds / 60);
-    const secs = seconds % 60;
-
-    return `${String(minutes).padStart(2, "0")}:${String(secs).padStart(
-      2,
-      "0"
-    )}`;
-  };
 
   useEffect(() => {
     if (!isRunning || time <= 0) {
@@ -115,11 +101,13 @@ const Pomodoro = () => {
                   className="w-40 rounded-lg bg-white py-1 text-3xl font-bold text-gray-800"
                   onClick={handleStartPause}
                 >
-                  {isRunning
-                    ? t("pomodoro.pause")
-                    : hasStarted
-                    ? t("pomodoro.resume")
-                    : t("pomodoro.start")}
+                  {(() => {
+                    if (isRunning) return t("pomodoro.pause");
+
+                    if (hasStarted) return t("pomodoro.resume");
+
+                    return t("pomodoro.start");
+                  })()}
                 </button>
               </div>
               {time !== resetTime[mode] && (

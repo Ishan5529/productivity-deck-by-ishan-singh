@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import { Favorite } from "neetoicons";
-import { Typography, Input, Modal, Button } from "neetoui";
+import { Typography, Input, Modal, Button, Tooltip } from "neetoui";
 import { Helmet } from "react-helmet";
 import { useTranslation } from "react-i18next";
 import useFavoritesStore from "stores/favoritesStore";
@@ -76,12 +76,16 @@ const Favorites = () => {
                     {title}
                   </a>
                 </Typography>
-                <Favorite
-                  className="cursor-pointer text-red-400"
-                  fill="currentColor"
-                  size="20"
-                  onClick={() => handleToggleClick(url, title)}
-                />
+                <Tooltip content={t("favourites.removeTooltip")} position="top">
+                  <div>
+                    <Favorite
+                      className="cursor-pointer text-red-400"
+                      fill="currentColor"
+                      size="20"
+                      onClick={() => handleToggleClick(url, title)}
+                    />
+                  </div>
+                </Tooltip>
               </div>
               <Input
                 className="mt-2"
@@ -101,9 +105,10 @@ const Favorites = () => {
             onClose={() => setIsModalOpen(false)}
           >
             <div className="m-4">
-              <Typography className="m-4" style="h2" weight="bold">
-                {t("favourites.remove")}
-              </Typography>
+              <h2 className="text-lg font-bold">{t("favourites.remove")}</h2>
+              <p className="mt-2 text-gray-600">
+                {t("favourites.removeMessage")}
+              </p>
               <div className="mt-6 flex justify-end gap-4">
                 <Button
                   label={t("util.cancel")}

@@ -50,10 +50,8 @@ const KanbanNote = ({ value, onChange, onDelete, strike }) => {
           onClose={() => setIsModalOpen(false)}
         >
           <div className="p-4">
-            <h2 className="text-lg font-bold">{t("kanban.remove")}</h2>
-            <p className="mt-2 text-gray-600">
-              {t("kanban.deleteConfirmation")}
-            </p>
+            <h2 className="text-lg font-bold">{t("kanban.deleteTitle")}</h2>
+            <p className="mt-2 text-gray-600">{t("kanban.deleteMessage")}</p>
             <div className="mt-4 flex justify-end gap-2">
               <Button
                 label={t("util.cancel")}

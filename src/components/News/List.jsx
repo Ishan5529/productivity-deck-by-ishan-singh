@@ -2,7 +2,7 @@ import { React } from "react";
 
 import { NoData } from "components/common";
 import { Favorite } from "neetoicons";
-import { Typography } from "neetoui";
+import { Typography, Tooltip } from "neetoui";
 import { useTranslation } from "react-i18next";
 
 import { convertDate, isEmptyOrUndefined, fallbackImage } from "./constant";
@@ -34,17 +34,28 @@ const List = ({ articles, favorites, toggleFavorite }) => {
                     {article.title.padEnd(100, "\u00A0")}
                   </a>
                 </Typography>
-                <Favorite
-                  className="cursor-pointer text-red-400"
-                  fill={favorites[article.url] ? "currentColor" : "None"}
-                  size="20"
-                  onClick={() =>
-                    toggleFavorite({
-                      url: article.url,
-                      title: article.title,
-                    })
+                <Tooltip
+                  position="top"
+                  content={
+                    favorites[article.url]
+                      ? t("news.favorites.removeTooltip")
+                      : t("news.favorites.addTooltip")
                   }
-                />
+                >
+                  <div>
+                    <Favorite
+                      className="cursor-pointer text-red-400"
+                      fill={favorites[article.url] ? "currentColor" : "None"}
+                      size="20"
+                      onClick={() =>
+                        toggleFavorite({
+                          url: article.url,
+                          title: article.title,
+                        })
+                      }
+                    />
+                  </div>
+                </Tooltip>
               </div>
               <Typography className="text-gray-600" style="h4" weight="medium">
                 {article.description.slice(0, 300)}

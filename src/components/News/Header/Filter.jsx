@@ -1,6 +1,13 @@
 import React, { useState } from "react";
 
-import { Pane, Button, Input, DatePicker, Select } from "@bigbinary/neetoui";
+import {
+  Pane,
+  Button,
+  Input,
+  DatePicker,
+  Select,
+  Tooltip,
+} from "@bigbinary/neetoui";
 import { useTranslation } from "react-i18next";
 
 import { newsCategoryOptions } from "../constant";
@@ -42,6 +49,14 @@ const Filter = ({
 
   const handleClose = () => {
     setIsOpenFilter(false);
+  };
+
+  const isDateValid = () => {
+    const minDate = new Date("1970-01-01");
+    const fromDate = date.dateFrom ? new Date(date.dateFrom) : null;
+    const toDate = date.dateTo ? new Date(date.dateTo) : null;
+
+    return (!fromDate || fromDate >= minDate) && (!toDate || toDate >= minDate);
   };
 
   return (
@@ -88,6 +103,7 @@ const Filter = ({
               className="w-96"
               format="YYYY-MM-DD"
               placeholder="YYYY-MM-DD"
+              size="large"
               value={date.dateFrom}
               onChange={(_, dateStr) =>
                 setDate(prev => ({
@@ -96,8 +112,6 @@ const Filter = ({
                 }))
               }
             />
-          </div>
-          <div className="flex flex-col gap-3">
             <label className="text-sm font-semibold">
               {t("news.filter.dateTo")}
             </label>
@@ -105,6 +119,7 @@ const Filter = ({
               className="w-96"
               format="YYYY-MM-DD"
               placeholder="YYYY-MM-DD"
+              size="large"
               value={date.dateTo}
               onChange={(_, dateStr) =>
                 setDate(prev => ({
@@ -117,12 +132,26 @@ const Filter = ({
         </div>
       </Pane.Body>
       <Pane.Footer className="flex space-x-2">
-        <Button
-          className="bg-gray-700"
-          label={t("util.apply")}
-          style="primary"
-          onClick={handleFilter}
-        />
+        {!isDateValid() ? (
+          <Tooltip content={t("news.filter.invalidDateMessage")} position="top">
+            <div>
+              <Button
+                disabled
+                className="bg-gray-700"
+                label={t("util.apply")}
+                style="primary"
+                onClick={handleFilter}
+              />
+            </div>
+          </Tooltip>
+        ) : (
+          <Button
+            className="bg-gray-700"
+            label={t("util.apply")}
+            style="primary"
+            onClick={handleFilter}
+          />
+        )}
         <Button
           label={t("news.filter.clear")}
           style="secondary"
