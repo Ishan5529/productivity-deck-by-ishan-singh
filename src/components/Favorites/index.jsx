@@ -1,31 +1,19 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 import { Favorite } from "neetoicons";
 import { Typography, Input, Modal, Button } from "neetoui";
 import { Helmet } from "react-helmet";
 import { useTranslation } from "react-i18next";
+import useFavoritesStore from "stores/favoritesStore";
+import useNotesStore from "stores/notesStore";
 
-const Favorites = ({ favorites, toggleFavorite }) => {
+const Favorites = () => {
   const { t } = useTranslation();
+  const { favorites, toggleFavorite } = useFavoritesStore();
+  const { notes, updateNote } = useNotesStore();
 
-  const [notes, setNotes] = useState(() => {
-    const savedNotes = localStorage.getItem("notes");
-
-    return savedNotes ? JSON.parse(savedNotes) : {};
-  });
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedFavorite, setSelectedFavorite] = useState(null);
-
-  useEffect(() => {
-    localStorage.setItem("notes", JSON.stringify(notes));
-  }, [notes]);
-
-  const handleNoteChange = (url, note) => {
-    setNotes(prevNotes => ({
-      ...prevNotes,
-      [url]: note,
-    }));
-  };
 
   const handleToggleClick = (url, title) => {
     setSelectedFavorite({ url, title });
@@ -100,7 +88,7 @@ const Favorites = ({ favorites, toggleFavorite }) => {
                 placeholder="Add a note..."
                 style={{ height: "64px" }}
                 value={notes[url] || ""}
-                onChange={e => handleNoteChange(url, e.target.value)}
+                onChange={e => updateNote(url, e.target.value)}
               />
             </div>
           ))}

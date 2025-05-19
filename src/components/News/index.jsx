@@ -9,14 +9,17 @@ import { Helmet } from "react-helmet";
 import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { routes } from "routes";
+import useFavoritesStore from "stores/favoritesStore";
 import { buildUrl } from "utils/url";
 
 import { DEFAULT_PAGE_INDEX, DEFAULT_PAGE_SIZE } from "./constant";
 import Header from "./Header";
 import List from "./List";
 
-const News = ({ favorites, toggleFavorite }) => {
+const News = () => {
   const { t } = useTranslation();
+  const { favorites, toggleFavorite } = useFavoritesStore();
+
   const {
     page,
     searchTerm = "",
