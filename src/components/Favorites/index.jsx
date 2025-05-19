@@ -3,14 +3,16 @@ import React, { useState, useEffect } from "react";
 import { Favorite } from "neetoicons";
 import { Typography, Input, Modal, Button } from "neetoui";
 import { Helmet } from "react-helmet";
+import { useTranslation } from "react-i18next";
 
 const Favorites = ({ favorites, toggleFavorite }) => {
+  const { t } = useTranslation();
+
   const [notes, setNotes] = useState(() => {
     const savedNotes = localStorage.getItem("notes");
 
     return savedNotes ? JSON.parse(savedNotes) : {};
   });
-
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedFavorite, setSelectedFavorite] = useState(null);
 
@@ -44,15 +46,15 @@ const Favorites = ({ favorites, toggleFavorite }) => {
     return (
       <>
         <Helmet>
-          <title>Favourites</title>
+          <title>{t("favourites.tabTitle")}</title>
         </Helmet>
         <div className="ml-10 flex h-screen flex-col gap-12 overflow-y-auto">
           <Typography className="mt-8" style="h1" weight="bold">
-            Favourites
+            {t("favourites.title")}
           </Typography>
           <div className="flex h-3/5 w-full items-center justify-center">
             <Typography className="text-gray-500" style="h3">
-              No favorites added yet.
+              {t("favourites.empty")}
             </Typography>
           </div>
         </div>
@@ -63,11 +65,11 @@ const Favorites = ({ favorites, toggleFavorite }) => {
   return (
     <>
       <Helmet>
-        <title>Favourites</title>
+        <title>{t("favourites.tabTitle")}</title>
       </Helmet>
       <div className="ml-10 flex h-screen flex-col gap-12 overflow-y-auto">
         <Typography className="mt-8" style="h1" weight="bold">
-          Favourites
+          {t("favourites.title")}
         </Typography>
         <div className="flex flex-col gap-16 overflow-y-auto">
           {favoriteEntries.map(([url, title]) => (
@@ -112,16 +114,16 @@ const Favorites = ({ favorites, toggleFavorite }) => {
           >
             <div className="m-4">
               <Typography className="m-4" style="h2" weight="bold">
-                Remove from favourites?
+                {t("favourites.remove")}
               </Typography>
               <div className="mt-6 flex justify-end gap-4">
                 <Button
-                  label="Cancel"
+                  label={t("util.cancel")}
                   style="secondary"
                   onClick={() => setIsModalOpen(false)}
                 />
                 <Button
-                  label="Remove"
+                  label={t("util.remove")}
                   style="danger"
                   onClick={confirmToggleFavorite}
                 />

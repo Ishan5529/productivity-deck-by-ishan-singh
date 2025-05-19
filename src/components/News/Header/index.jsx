@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 import { Filter as FilterIcon, MenuHorizontal } from "neetoicons";
 import { Button, Tag, Typography } from "neetoui";
+import { useTranslation } from "react-i18next";
 
 import ChangeSourceModal from "./ChangeSourceModal";
 import Filter from "./Filter";
@@ -16,6 +17,7 @@ const Header = ({
   category,
   totalResults = "10",
 }) => {
+  const { t } = useTranslation();
   const [isOpenFilter, setIsOpenFilter] = useState(false);
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [searchKey, setSearchKey] = useState(searchTerm || "");
@@ -77,7 +79,7 @@ const Header = ({
         <div className="flex flex-col gap-y-4">
           <div className="container flex items-center gap-x-2">
             <Typography style="h1" weight="bold">
-              News Mode
+              {t("news.title")}
             </Typography>
             <div className="mt-2 cursor-pointer text-gray-500">
               <MenuHorizontal size="20" onClick={() => setIsOpenModal(true)} />
@@ -94,7 +96,7 @@ const Header = ({
           {!isEmptyArr && (
             <div className="flex items-center justify-center gap-x-2">
               <Typography className="text-gray-500" style="body1">
-                {totalResults} results for :
+                {totalResults} {t("news.results")}
               </Typography>
               {arr.map(item => {
                 const isArray = Array.isArray(item.value);
@@ -125,7 +127,7 @@ const Header = ({
                 style="text"
                 onClick={handleClearTag}
               >
-                Clear All
+                {t("news.clear")}
               </Button>
             </div>
           )}

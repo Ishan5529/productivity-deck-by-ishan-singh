@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 import { Modal, Select, Button, Typography } from "@bigbinary/neetoui";
+import { useTranslation } from "react-i18next";
 
 import { newsOptions } from "../constant";
 
@@ -9,6 +10,7 @@ const ChangeSourceModal = ({
   isOpenModal,
   updateQueryParams,
 }) => {
+  const { t } = useTranslation();
   const [newsSource, setNewsSource] = useState({});
 
   const handleCancel = () => {
@@ -30,14 +32,14 @@ const ChangeSourceModal = ({
     >
       <Modal.Header>
         <Typography style="h2" weight="bold">
-          Change news source
+          {t("news.changeSource")}
         </Typography>
       </Modal.Header>
       <Modal.Body>
         <Select
           label="News source"
           options={newsOptions}
-          placeholder="Select news source"
+          placeholder={t("news.selectSource")}
           value={newsSource}
           onChange={setNewsSource}
         />
@@ -45,11 +47,11 @@ const ChangeSourceModal = ({
       <Modal.Footer className="flex justify-start">
         <Button
           className="bg-gray-700"
-          label="Save"
+          label={t("util.save")}
           style="primary"
           onClick={handleSave}
         />
-        <Button label="Cancel" style="text" onClick={handleCancel} />
+        <Button label={t("util.cancel")} style="text" onClick={handleCancel} />
       </Modal.Footer>
     </Modal>
   );

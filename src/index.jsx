@@ -7,6 +7,8 @@ import { ToastContainer } from "react-toastify";
 import queryClient from "utils/queryClient";
 
 import initializeAxios from "./api/axios";
+import "./components/common/i18n";
+// eslint-disable-next-line import/order
 import App from "./App";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";

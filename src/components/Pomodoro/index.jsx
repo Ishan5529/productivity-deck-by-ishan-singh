@@ -3,8 +3,10 @@ import React, { useState, useEffect, useRef } from "react";
 
 import { Button, Typography } from "neetoui";
 import { Helmet } from "react-helmet";
+import { useTranslation } from "react-i18next";
 
 const Pomodoro = () => {
+  const { t } = useTranslation();
   const [time, setTime] = useState(1500);
   const [isRunning, setIsRunning] = useState(false);
   const [hasStarted, setHasStarted] = useState(false);
@@ -71,12 +73,12 @@ const Pomodoro = () => {
   return (
     <>
       <Helmet>
-        <title>Pomodoro Mode</title>
+        <title>{t("pomodoro.tabTitle")}</title>
       </Helmet>
       <div className="ml-10 flex flex-col gap-y-20">
         <header>
           <Typography className="mt-8" style="h1" weight="bold">
-            Pomodoro Mode
+            {t("pomodoro.title")}
           </Typography>
         </header>
         <div className="flex h-full flex-col items-center justify-center">
@@ -131,7 +133,11 @@ const Pomodoro = () => {
                   className="w-40 rounded-lg bg-white py-1 text-3xl font-bold text-gray-800"
                   onClick={handleStartPause}
                 >
-                  {isRunning ? "Pause" : hasStarted ? "Resume" : "Start"}
+                  {isRunning
+                    ? t("pomodoro.pause")
+                    : hasStarted
+                    ? t("pomodoro.resume")
+                    : t("pomodoro.start")}
                 </button>
               </div>
               {time !==
@@ -145,7 +151,7 @@ const Pomodoro = () => {
                     className="w-40 rounded-lg bg-white py-1 text-3xl font-bold text-gray-800"
                     onClick={handleReset}
                   >
-                    Reset
+                    {t("pomodoro.reset")}
                   </button>
                 </div>
               )}

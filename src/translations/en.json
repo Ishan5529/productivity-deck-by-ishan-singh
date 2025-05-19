@@ -1,11 +1,68 @@
 {
   "helloWorld": "Hello World",
+  "util": {
+    "ok": "OK",
+    "cancel": "Cancel",
+    "yes": "Yes",
+    "no": "No",
+    "apply": "Apply",
+    "edit": "Edit",
+    "save": "Save",
+    "add": "Add",
+    "remove": "Remove",
+    "delete": "Delete"
+  },
   "pageNotFound": {
     "title": "The page you're looking for can't be found",
     "label": "Back to home"
   },
   "title": {
-    "emptySearchKey": "Enter any news genre search",
-    "articleNotFound": "No News found"
+    "articleNotFound": "Error fetching news articles"
+  },
+  "favourites": {
+    "tabTitle": "Favourites",
+    "title": "Favourites",
+    "empty": "No favorites added yet.",
+    "remove": "Remove from favourites?"
+  },
+  "kanban": {
+    "tabTitle": "Kanban Mode",
+    "title": "Kanban Mode",
+    "todo": "To-do",
+    "inProgress": "In progress",
+    "done": "Done",
+    "newTask": "Add new task +",
+    "remove": "Confirm Delete",
+    "deleteConfirmation": "Are you sure you want to delete this note?"
+  },
+  "news": {
+    "tabTitle": "News Mode",
+    "title": "News Mode",
+    "empty": "No news articles available.",
+    "error": "Error fetching news articles.",
+    "refresh": "Refresh",
+    "results": "results for :",
+    "clear": "Clear All",
+    "searchPlaceholder": "Search for article",
+    "changeSource": "Change news source",
+    "selectSource": "Select news source",
+    "filter": {
+      "title": "Filters",
+      "key/phrase": "Keyword or phrase",
+      "k/pPlaceholder": "Enter keyword or phrase",
+      "category": "Category",
+      "categoryPlaceholder": "Select category",
+      "dateFrom": "Date of Publication From",
+      "dateTo": "Date of Publication To",
+      "clear": "Clear filters"
+    }
+  },
+  "pomodoro": {
+    "tabTitle": "Pomodoro Mode",
+    "title": "Pomodoro Mode",
+    "start": "Start",
+    "reset": "Reset",
+    "pause": "Pause",
+    "resume": "Resume"
   }
 }

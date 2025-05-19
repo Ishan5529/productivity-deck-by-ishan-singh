@@ -6,6 +6,7 @@ import { filterNonNull } from "neetocist";
 import { Pagination } from "neetoui";
 import { isEmpty } from "ramda";
 import { Helmet } from "react-helmet";
+import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { routes } from "routes";
 import { buildUrl } from "utils/url";
@@ -15,6 +16,7 @@ import Header from "./Header";
 import List from "./List";
 
 const News = ({ favorites, toggleFavorite }) => {
+  const { t } = useTranslation();
   const {
     page,
     searchTerm = "",
@@ -74,7 +76,7 @@ const News = ({ favorites, toggleFavorite }) => {
   return (
     <>
       <Helmet>
-        <title>News Mode</title>
+        <title>{t("news.tabTitle")}</title>
       </Helmet>
       <div className="mx-10 flex h-full flex-col">
         <Header

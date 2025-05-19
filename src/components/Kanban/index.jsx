@@ -1,26 +1,27 @@
 import { Typography } from "neetoui";
 import { Helmet } from "react-helmet";
+import { useTranslation } from "react-i18next";
 
 import KanbanBoard from "./KanbanBoard";
 
 const Kanban = () => {
-  console.log("Kanban component rendered");
+  const { t } = useTranslation();
 
   return (
     <>
       <Helmet>
-        <title>Kanban Mode</title>
+        <title>{t("kanban.tabTitle")}</title>
       </Helmet>
       <div className="ml-10 flex h-screen flex-col gap-y-10">
         <header>
           <Typography className="mt-8" style="h1" weight="bold">
-            Kanban Mode
+            {t("kanban.title")}
           </Typography>
         </header>
         <div className="container flex h-3/4 w-screen flex-row justify-between gap-x-10 bg-white">
-          <KanbanBoard boardName="To-do" />
-          <KanbanBoard boardName="In progress" />
-          <KanbanBoard strike boardName="Done" />
+          <KanbanBoard boardName={t("kanban.todo")} />
+          <KanbanBoard boardName={t("kanban.inProgress")} />
+          <KanbanBoard strike boardName={t("kanban.done")} />
         </div>
       </div>
     </>

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 import { Pane, Button, Input, DatePicker, Select } from "@bigbinary/neetoui";
+import { useTranslation } from "react-i18next";
 
 import { newsCategoryOptions } from "../constant";
 
@@ -13,11 +14,11 @@ const Filter = ({
   dateFrom,
   dateTo,
 }) => {
+  const { t } = useTranslation();
   const [date, setDate] = useState({
     dateFrom: dateFrom || null,
     dateTo: dateTo || null,
   });
-
   const [newsCategory, setNewsCategory] = useState([]);
 
   const handleFilter = () => {
@@ -46,22 +47,26 @@ const Filter = ({
   return (
     <Pane isOpen={isOpenFilter} onClose={() => setIsOpenFilter(false)}>
       <Pane.Header>
-        <h2 className="text-xl font-bold">Filters</h2>
+        <h2 className="text-xl font-bold">{t("news.filter.title")}</h2>
       </Pane.Header>
       <Pane.Body>
         <div className="space-y-4">
           <div className="flex flex-col gap-3">
-            <label className="text-sm font-semibold">Keyword or phrase</label>
+            <label className="text-sm font-semibold">
+              {t("news.filter.key/phrase")}
+            </label>
             <Input
               required
               className="w-96"
-              placeholder="Enter keyword"
+              placeholder={t("news.filter.k/pPlaceholder")}
               value={searchKey}
               onChange={({ target: { value } }) => setSearchKey(value)}
             />
           </div>
           <div className="flex flex-col gap-3">
-            <label className="text-sm font-semibold">Category</label>
+            <label className="text-sm font-semibold">
+              {t("news.filter.category")}
+            </label>
             <div className="flex space-x-2">
               <Select
                 isClearable
@@ -69,7 +74,7 @@ const Filter = ({
                 isSearchable
                 className="w-96"
                 options={newsCategoryOptions}
-                placeholder="category"
+                placeholder={t("news.filter.categoryPlaceholder")}
                 value={newsCategory}
                 onChange={setNewsCategory}
               />
@@ -77,7 +82,7 @@ const Filter = ({
           </div>
           <div className="flex flex-col gap-3">
             <label className="text-sm font-semibold">
-              Date of Publication From
+              {t("news.filter.dateFrom")}
             </label>
             <DatePicker
               className="w-96"
@@ -94,7 +99,7 @@ const Filter = ({
           </div>
           <div className="flex flex-col gap-3">
             <label className="text-sm font-semibold">
-              Date of Publication To
+              {t("news.filter.dateTo")}
             </label>
             <DatePicker
               className="w-96"
@@ -114,11 +119,15 @@ const Filter = ({
       <Pane.Footer className="flex space-x-2">
         <Button
           className="bg-gray-700"
-          label="Done"
+          label={t("util.apply")}
           style="primary"
           onClick={handleFilter}
         />
-        <Button label="Clear filters" style="secondary" onClick={ClearFilter} />
+        <Button
+          label={t("news.filter.clear")}
+          style="secondary"
+          onClick={ClearFilter}
+        />
       </Pane.Footer>
     </Pane>
   );
