@@ -27,17 +27,27 @@ const KanbanNote = ({
     <>
       <div
         draggable
-        className="drag:border-4 drag:border-blue-500 flex cursor-pointer flex-row items-center justify-center gap-x-4 rounded-lg border border-gray-800 bg-white p-4 shadow-md transition-shadow duration-300 hover:shadow-lg"
+        className="flex cursor-pointer flex-row items-center justify-center gap-x-4 rounded-lg border border-gray-800 bg-white p-4 shadow-md transition-shadow duration-300 hover:shadow-lg"
+        style={{ cursor: "grab" }}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
         onDragEnd={({ target }) => {
           target.style.cursor = "grab";
-          target.classList.remove("border-blue-500", "opacity-90");
+          target.style.opacity = "1";
           setActiveNote(null);
         }}
-        onDragStart={({ target }) => {
+        onDragStart={({ target, dataTransfer }) => {
           target.style.cursor = "grabbing";
-          target.classList.add("border-blue-500", "opacity-90");
+          target.style.opacity = "0";
+
+          const dragImage = target.cloneNode(true);
+
+          dragImage.style.cssText =
+            "opacity: 1; position: absolute; top: -9999px;";
+          document.body.appendChild(dragImage);
+
+          dataTransfer.setDragImage(dragImage, 0, 0);
+
           setActiveNote([boardName, index]);
         }}
       >

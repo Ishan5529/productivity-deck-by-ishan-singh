@@ -1,7 +1,10 @@
 import React from "react";
 
+import { isEmpty } from "ramda";
+
 import KanbanAdd from "./Add";
 import DropArea from "./dropArea";
+import DropAreaBoard from "./dropAreaBoard";
 import KanbanBoardHeader from "./header";
 import KanbanNote from "./note";
 
@@ -35,7 +38,11 @@ const KanbanBoard = ({ boardName, strike, setActiveNote, onDrop }) => {
       <div className="flex h-full flex-col justify-center gap-y-10 overflow-y-auto">
         <KanbanBoardHeader boardName={boardName} />
         <div className="flex h-full flex-col gap-y-2 overflow-y-auto">
-          <DropArea onDrop={() => onDrop(boardName, 0)} />
+          {!isEmpty(boardNotes) ? (
+            <DropArea onDrop={() => onDrop(boardName, 0)} />
+          ) : (
+            ""
+          )}
           {boardNotes.map((note, index) => (
             <>
               <KanbanNote
@@ -48,9 +55,18 @@ const KanbanBoard = ({ boardName, strike, setActiveNote, onDrop }) => {
                 onChange={value => updateNote(index, value)}
                 onDelete={() => removeNote(index)}
               />
-              <DropArea onDrop={() => onDrop(boardName, index + 1)} />
+              {boardNotes.length - 1 > index ? (
+                <DropArea onDrop={() => onDrop(boardName, index + 1)} />
+              ) : (
+                ""
+              )}
             </>
           ))}
+          <div className="relative h-full w-full">
+            <DropAreaBoard
+              onDrop={() => onDrop(boardName, boardNotes.length)}
+            />
+          </div>
         </div>
       </div>
       <div onClick={addNote}>
